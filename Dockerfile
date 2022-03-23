@@ -1,5 +1,7 @@
-FROM python:3
-ADD manage.py
-RUN pip install django djangorestframework pygments
-CMD ["python", "./manage.py startapp snippets"]
-
+FROM python:3.9
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+EXPOSE 8000
+COPY . .
+CMD ["bash", "start-server.sh"]
